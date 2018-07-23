@@ -1,3 +1,33 @@
-<p>
-  progress works!
-</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Progress Bar</h4>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" [attr.ariaValuenow]="progreso" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso + '%'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <!-- <h4 class="card-title">Progress Bar</h4> -->
+                <!-- si la variable va entre [ ] significa que es una variable lo que se envia -->
+                <!-- si es solo la variable significa que es un string lo que se envia -->
+                <app-incrementador nombre="Progress Azul" [progreso]="20" ></app-incrementador>
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="card">
+            <div class="card-body">
+                <!-- <h4 class="card-title">Progress Bar</h4> -->
+                <app-incrementador nombre="Progress Verde" [progreso]="40"></app-incrementador>
+            </div>
+        </div>
+    </div>
+</div>

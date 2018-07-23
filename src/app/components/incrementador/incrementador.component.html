@@ -1,0 +1,20 @@
+{{ leyenda }}
+<div class="input-group">
+    <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="button" (click)="disminuir()" *ngIf="progreso>0">
+          <i class="mdi mdi-minus"></i>
+        </button>
+        <button class="btn btn-outline-secondary" type="button" *ngIf="progreso<=0">
+          <i class="mdi mdi-minus"></i>
+        </button>
+    </div>
+    <input type="text" class="form-control" placeholder="width" name="progreso" [(ngModel)]="progreso" >
+    <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="button" (click)="incrementar()" *ngIf="progreso<100">
+          <i class="mdi mdi-plus"></i>
+        </button>
+        <button class="btn btn-outline-secondary" type="button" *ngIf="progreso>=100">
+          <i class="mdi mdi-plus"></i>
+        </button>
+    </div>
+</div>

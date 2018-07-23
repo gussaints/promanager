@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from "@angular/forms";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// Temporal
+import { IncrementadorComponent } from "../components/incrementador/incrementador.component";
 // Rutas
 import { PAGES_ROUTES } from "./pages.routes";
 // Modulos
@@ -16,12 +19,14 @@ import { ProgressComponent } from "./progress/progress.component";
         DashboardComponent,
         Graph1Component,
         PagesComponent,
-        ProgressComponent
+        ProgressComponent,
+        IncrementadorComponent
     ],
     imports: [
         CommonModule,
         SharedModule,
-        PAGES_ROUTES
+        PAGES_ROUTES,
+        FormsModule
     ],
     exports: [
         DashboardComponent,

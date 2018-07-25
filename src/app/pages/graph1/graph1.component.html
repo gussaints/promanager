@@ -1,3 +1,5 @@
-<p>
-  graph1 works!
-</p>
+<div class="row">
+  <div class="col-6" *ngFor="let gra of graficos">
+    <app-grafico-dona [labels]="gra.labels" [data]="gra.data" [type]="gra.type" [leyenda]="gra.leyenda"></app-grafico-dona>
+  </div>
+</div>

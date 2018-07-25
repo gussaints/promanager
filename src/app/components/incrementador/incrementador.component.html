@@ -8,7 +8,7 @@
           <i class="mdi mdi-minus"></i>
         </button>
     </div>
-    <input type="text" class="form-control" placeholder="width" name="progreso" [(ngModel)]="progreso" >
+    <input #txtProgreso type="number" class="form-control" placeholder="width" name="progreso" [(ngModel)]="progreso" (ngModelChange)="onChanges($event)" min="0" max="100">
     <div class="input-group-append">
         <button class="btn btn-outline-primary" type="button" (click)="incrementar()" *ngIf="progreso<100">
           <i class="mdi mdi-plus"></i>

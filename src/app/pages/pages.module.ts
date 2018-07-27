@@ -16,6 +16,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { Graph1Component } from "./graph1/graph1.component";
 import { PagesComponent } from "./pages.component";
 import { ProgressComponent } from "./progress/progress.component";
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +26,9 @@ import { ProgressComponent } from "./progress/progress.component";
         PagesComponent,
         ProgressComponent,
         IncrementadorComponent,
-        GraficoDonaComponent
+        GraficoDonaComponent,
+        PromesasComponent,
+        RxjsComponent
     ],
     imports: [
         CommonModule,

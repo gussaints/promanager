@@ -1,0 +1,1 @@
+export const URL_SERVICIOS = `${ window.location.protocol }//${ window.location.hostname }:3013`;

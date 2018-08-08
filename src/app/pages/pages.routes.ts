@@ -6,11 +6,14 @@ import { ProgressComponent } from "./progress/progress.component";
 import { Graph1Component } from "./graph1/graph1.component";
 import { PromesasComponent } from "./promesas/promesas.component";
 import { RxjsComponent } from "./rxjs/rxjs.component";
+// Guards
+import { LoginGuardGuard } from "../services/service.index";
 
 const pagesRoutes: Routes = [
     { 
         path: '',
         component: PagesComponent,
+        canActivate: [ LoginGuardGuard ],
         children: [
             { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' } },
             { path: 'graph1', component: Graph1Component, data: { titulo: 'Graficas' } },

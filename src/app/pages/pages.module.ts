@@ -18,6 +18,9 @@ import { PagesComponent } from "./pages.component";
 import { ProgressComponent } from "./progress/progress.component";
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
+// Pipes
+import { PipesModule } from "../pipes/pipes.module";
 
 @NgModule({
     declarations: [
@@ -28,14 +31,16 @@ import { RxjsComponent } from './rxjs/rxjs.component';
         IncrementadorComponent,
         GraficoDonaComponent,
         PromesasComponent,
-        RxjsComponent
+        RxjsComponent,
+        ProfileComponent
     ],
     imports: [
         CommonModule,
         SharedModule,
         PAGES_ROUTES,
         FormsModule,
-        ChartsModule
+        ChartsModule,
+        PipesModule
     ],
     exports: [
         DashboardComponent,

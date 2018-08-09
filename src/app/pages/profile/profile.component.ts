@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import { UsuarioService } from "../../services/service.index";
+import { UsuarioService } from '../../services/service.index';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-profile',
@@ -10,6 +11,8 @@ import { UsuarioService } from "../../services/service.index";
 export class ProfileComponent implements OnInit {
 
   usuario: Usuario;
+  imagenSubir: File;
+  imagenTemp: string;
 
   constructor(
     public _usuarioService: UsuarioService
@@ -33,5 +36,40 @@ export class ProfileComponent implements OnInit {
                           console.log( resp );
                         });
   }
+
+  seleccionImagen( eva: File ){
+    if ( !eva ) {
+      this.imagenSubir = null;
+      console.log( this.imagenSubir );
+      return ;
+    }
+
+    if ( eva.type.indexOf( 'image' ) < 0 ) {
+      swal( 'Solo imagenes', 'El archivo seleccionado no es una imagen', 'error' );
+      this.imagenSubir = null;
+      return;
+    }
+
+    this.imagenSubir = eva;
+
+    let reader = new FileReader( );
+    let urlImagenTemp = reader.readAsDataURL( eva );
+    reader.onloadend = ( ) => {
+      this.imagenTemp = reader.result;
+      console.log( reader.result );
+      
+    }
+
+
+    console.log( this.imagenSubir );
+    
+  }
+
+  cambiarImagen( ){
+    console.log( 'habilitado' );
+    this._usuarioService.cambiarImagen( this.imagenSubir, this.usuario._id );
+  }
+
+
 
 }

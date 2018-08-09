@@ -6,6 +6,8 @@ import { URL_SERVICIOS } from "../../config/config";
 import swal from "sweetalert";
 import { map } from "rxjs/operators";
 // import "rxjs/add/operator/map";
+// Services
+import { SubirArchivoService } from "../subir-archivo/subir-archivo.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class UsuarioService {
 
   constructor(
     public http: HttpClient,
-    public router: Router
+    public router: Router,
+    public _subirArchivoService: SubirArchivoService
   ) {
     console.log('Servicio de usuario listo');
     console.log( URL_SERVICIOS );
@@ -113,5 +116,23 @@ export class UsuarioService {
 
                     }));
   }
+
+
+  cambiarImagen( archivo: File, id: string ){
+
+    this._subirArchivoService.subirArchivo( archivo, 'usuarios', id )
+        .then( ( resp: any ) => {
+          console.log( resp );
+
+          this.usuario.img = resp.usuario.img;
+          swal( 'Imagen actualizada', this.usuario.nombre, 'success' );
+          this.guardarStorage( id, this.token, this.usuario );
+        })
+        .catch( errCatch => {
+          console.log( errCatch );
+        });
+
+  }
+
 
 }

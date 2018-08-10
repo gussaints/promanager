@@ -24,23 +24,18 @@ export class ProfileComponent implements OnInit {
   }
 
   guardar( user: Usuario ){
-    console.log( user );
     this.usuario.nombre = user.nombre;
     if ( !this.usuario.google ) {
       this.usuario.email = user.email;
     }
-    console.log( this.usuario );
     
     this._usuarioService.actualizarUsuario( this.usuario )
-                        .subscribe( ( resp: any ) => {
-                          console.log( resp );
-                        });
+                        .subscribe( ( resp: any ) => { });
   }
 
   seleccionImagen( eva: File ){
     if ( !eva ) {
       this.imagenSubir = null;
-      console.log( this.imagenSubir );
       return ;
     }
 
@@ -56,17 +51,12 @@ export class ProfileComponent implements OnInit {
     let urlImagenTemp = reader.readAsDataURL( eva );
     reader.onloadend = ( ) => {
       this.imagenTemp = reader.result;
-      console.log( reader.result );
-      
     }
 
-
-    console.log( this.imagenSubir );
     
   }
 
   cambiarImagen( ){
-    console.log( 'habilitado' );
     this._usuarioService.cambiarImagen( this.imagenSubir, this.usuario._id );
   }
 

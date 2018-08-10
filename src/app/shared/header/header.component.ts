@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   constructor(
     public _usuarioService: UsuarioService 
   ) {
-    console.log( _usuarioService );
   }
 
   ngOnInit() {

@@ -7,6 +7,7 @@ import { Graph1Component } from "./graph1/graph1.component";
 import { PromesasComponent } from "./promesas/promesas.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { RxjsComponent } from "./rxjs/rxjs.component";
+import { UsuariosComponent } from "./usuarios/usuarios.component";
 // Guards
 import { LoginGuardGuard } from "../services/service.index";
 
@@ -21,7 +22,9 @@ const pagesRoutes: Routes = [
             { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
             { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
             { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs Observables' } },
-            { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
+            // { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
+            // Mantenimientos
+            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de usuarios' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

@@ -1,20 +1,24 @@
-{{ leyenda }}
+{{ leyenda }} - total: {{ total }}
 <div class="input-group">
     <div class="input-group-append">
         <button class="btn btn-outline-primary" type="button" (click)="disminuir()" *ngIf="progreso>0">
-          <i class="mdi mdi-minus"></i>
+          <!-- <i class="mdi mdi-minus"></i> -->
+          Before
         </button>
         <button class="btn btn-outline-secondary" type="button" *ngIf="progreso<=0">
-          <i class="mdi mdi-minus"></i>
+          <!-- <i class="mdi mdi-minus"></i> -->
+          Before
         </button>
     </div>
-    <input #txtProgreso type="number" class="form-control" placeholder="width" name="progreso" [(ngModel)]="progreso" (ngModelChange)="onChanges($event)" min="0" max="100">
+    <input #txtProgreso type="number" class="form-control" placeholder="width" name="progreso" [(ngModel)]="progreso" (ngModelChange)="onChanges($event)" min="0" [max]="total">
     <div class="input-group-append">
-        <button class="btn btn-outline-primary" type="button" (click)="incrementar()" *ngIf="progreso<100">
-          <i class="mdi mdi-plus"></i>
+        <button class="btn btn-outline-primary" type="button" (click)="incrementar()" *ngIf="progreso<total">
+          <!-- <i class="mdi mdi-plus"></i> -->
+          Next
         </button>
-        <button class="btn btn-outline-secondary" type="button" *ngIf="progreso>=100">
-          <i class="mdi mdi-plus"></i>
+        <button class="btn btn-outline-secondary" type="button" *ngIf="progreso>=total">
+          <!-- <i class="mdi mdi-plus"></i> -->
+          Next
         </button>
     </div>
 </div>

@@ -21,7 +21,6 @@ export class SettingsService {
 
   cargarAjustes(){
     if ( localStorage.getItem('ajustes') ) {
-      console.log( 'cargando Ajustes de localStorage' );
       this.ajustes = JSON.parse( localStorage.getItem('ajustes') );
       this.aplicarTema( this.ajustes.tema );
     } else {

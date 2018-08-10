@@ -8,7 +8,9 @@ import { Component, OnInit, Input, Output, ViewChild, EventEmitter, ElementRef }
 export class IncrementadorComponent implements OnInit {
 
   @Input('nombre') leyenda : string = 'Leyenda';
-  @Input() progreso : number = 50;
+  @Input() progreso : number;
+  @Input() total : number;
+  theLast: number;
 
   @Output('updateVal') CambioValor : EventEmitter<number> = new EventEmitter( );
 
@@ -16,8 +18,10 @@ export class IncrementadorComponent implements OnInit {
 
   onChanges( newValue:number ){
 
-    if ( newValue >= 100 ) {
-      this.progreso = 100;
+    this.theLast = this.total%5 > 0 ? this.total%5 : 5;
+
+    if ( newValue >= this.total-this.theLast ) {
+      this.progreso = this.total-this.theLast;
     } else if ( newValue <= 0 ) {
       this.progreso = 0;
     } else {
@@ -29,15 +33,24 @@ export class IncrementadorComponent implements OnInit {
   }
 
   incrementar( ){
-    if ( this.progreso < 96 ) {
-      this.progreso += 5;
+
+    this.theLast = this.total%5 > 0 ? this.total%5 : 5;
+
+    let pro = this.progreso+5;
+    let newTotal = this.total-this.theLast;
+    
+    if (pro > newTotal){
+      this.progreso = newTotal;
       this.emitting();
-    } else {
-      this.progreso = 100;
+    } else if ( this.progreso < newTotal ) {
+      this.progreso += 5;
       this.emitting();
     }
   }
   disminuir( ){
+
+    this.theLast = this.total%5 > 0 ? this.total%5 : 5;
+
     if ( this.progreso > 4 ) {
       this.progreso -= 5;
       this.emitting();

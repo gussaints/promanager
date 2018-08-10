@@ -1,0 +1,67 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #input (keyup)="buscarUsuario( input.value )" type="text" class="form-control" placeholder="Buscar usuarios">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="cargando">
+  <div class="col-sm-12">
+    <div class="alert alert-warning text-center">
+      <strong>Cargando</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br>
+      <span>Espere por favor</span>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title"> Usuarios registrados ( <small>{{ totalRegistros }}</small> )  </h3>
+
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Imagen</th>
+                      <th>Correo</th>
+                      <th>Nombre</th>
+                      <th>Role</th>
+                      <th>Auth</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of usuarios">
+                      <td> <img [src]="user.img | imagen" class="w50 img-circle"> </td>
+                      <td>{{ user.email }}</td>
+                      <td>{{ user.nombre }}</td>
+                      <td>{{ user.role }}</td>
+                      <td>
+                        <label *ngIf="user.google" class="label label-danger">Google</label>
+                        <label *ngIf="!user.google" class="label label-info">Normal</label>
+                      </td>
+                      <td>
+                        <button class="btn btn-primary">
+                          <i class="fa fa-save"></i>
+                        </button>
+                        <button class="btn btn-danger">
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="col-4">
+                    <app-incrementador nombre="Progress Azul" [total]="totalRegistros" [progreso]="desde" (updateVal)="cambiarDesde($event)"></app-incrementador>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

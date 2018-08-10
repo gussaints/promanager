@@ -22,8 +22,6 @@ export class UsuarioService {
     public router: Router,
     public _subirArchivoService: SubirArchivoService
   ) {
-    console.log('Servicio de usuario listo');
-    console.log( URL_SERVICIOS );
     this.cargarStorage( );
   }
 
@@ -102,7 +100,6 @@ export class UsuarioService {
   actualizarUsuario( usuario: Usuario ){
     let url = URL_SERVICIOS + '/usuario/' + usuario._id;
     url += '?token=' + this.token;
-    console.log( url );
     
     return this.http.patch( url, usuario )
                     .pipe( map( ( resp: any ) => {
@@ -122,8 +119,6 @@ export class UsuarioService {
 
     this._subirArchivoService.subirArchivo( archivo, 'usuarios', id )
         .then( ( resp: any ) => {
-          console.log( resp );
-
           this.usuario.img = resp.usuario.img;
           swal( 'Imagen actualizada', this.usuario.nombre, 'success' );
           this.guardarStorage( id, this.token, this.usuario );
@@ -132,6 +127,18 @@ export class UsuarioService {
           console.log( errCatch );
         });
 
+  }
+
+  cargarUsuarios( desde: number = 0 ){
+    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+
+    return this.http.get( url );
+  }
+
+  buscarUsuarios( termino: string ){
+    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    return this.http.get( url )
+               .pipe( map( ( resp: any ) => resp.usuarios ) );
   }
 
 

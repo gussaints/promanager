@@ -1,0 +1,52 @@
+import { Component, OnInit } from '@angular/core';
+import { SubirArchivoService } from "../../services/service.index";
+import { ModalUploadService } from "./modal-upload.service";
+
+@Component({
+  selector: 'app-modal-upload',
+  templateUrl: './modal-upload.component.html',
+  styles: []
+})
+export class ModalUploadComponent implements OnInit {
+
+  imagenSubir: File;
+  imagenTemp: string;
+
+  constructor(
+    public _subirArchivoService: SubirArchivoService,
+    public _modalUploadService: ModalUploadService
+  ) {
+    console.log( 'modal upload listo' );
+    
+  }
+
+  ngOnInit() {
+  }
+
+  subirImagen( ){
+    console.log( 'santo' );
+    
+  }
+
+  seleccionImagen( eva: File ){
+    if ( !eva ) {
+      this.imagenSubir = null;
+      return ;
+    }
+
+    if ( eva.type.indexOf( 'image' ) < 0 ) {
+      swal( 'Solo imagenes', 'El archivo seleccionado no es una imagen', 'error' );
+      this.imagenSubir = null;
+      return;
+    }
+
+    this.imagenSubir = eva;
+
+    let reader = new FileReader( );
+    let urlImagenTemp = reader.readAsDataURL( eva );
+    reader.onloadend = ( ) => {
+      this.imagenTemp = reader.result;
+    }
+  }
+
+}

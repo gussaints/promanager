@@ -97,17 +97,22 @@ export class UsuarioService {
                 }));
   }
 
-  actualizarUsuario( usuario: Usuario ){
-    let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+  actualizarUsuario( usu: Usuario ){
+    let url = URL_SERVICIOS + '/usuario/' + usu._id;
     url += '?token=' + this.token;
     
-    return this.http.patch( url, usuario )
+    return this.http.patch( url, usu )
                     .pipe( map( ( resp: any ) => {
 
-                      let user: Usuario = resp.usuario;
+                      if ( usu._id === this.usuario._id ) {
+                        // solo si el usuario actualizado es igual al que esta logueado
+                        let user: Usuario = resp.usuario;
+                        this.guardarStorage( user._id, this.token, user );
+                        console.log( 'se guardo en el localStorage' );
+                        
+                      }
 
-                      this.guardarStorage( user._id, this.token, user );
-                      swal( 'Usuario actualizado', usuario.nombre, 'success' );
+                      swal( 'Usuario actualizado', usu.nombre, 'success' );
 
                       return true;
 
@@ -139,6 +144,17 @@ export class UsuarioService {
     let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
     return this.http.get( url )
                .pipe( map( ( resp: any ) => resp.usuarios ) );
+  }
+
+  borrarUsuario( id: string ){
+    let url = URL_SERVICIOS + '/usuario/' + id;
+    url += '?token=' + this.token;
+
+    return this.http.delete( url )
+               .pipe( map( ( resp: any ) => {
+                 swal( 'Usuario borrado', resp.nombre + ' ha sido borrado correctamente', 'success' );
+                 return true;
+               }));
   }
 
 

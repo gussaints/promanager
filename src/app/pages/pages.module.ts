@@ -2,6 +2,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+// animations
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 // Plugins
 import { ChartsModule } from "ng2-charts";
 // Temporal
@@ -19,6 +22,7 @@ import { ProgressComponent } from "./progress/progress.component";
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 // Pipes
 import { PipesModule } from "../pipes/pipes.module";
 import { UsuariosComponent } from './usuarios/usuarios.component';
@@ -34,7 +38,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
         PromesasComponent,
         RxjsComponent,
         ProfileComponent,
-        UsuariosComponent
+        UsuariosComponent,
+        ModalUploadComponent
     ],
     imports: [
         CommonModule,
@@ -42,7 +47,10 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
         PAGES_ROUTES,
         FormsModule,
         ChartsModule,
-        PipesModule
+        PipesModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCheckboxModule
     ],
     exports: [
         DashboardComponent,

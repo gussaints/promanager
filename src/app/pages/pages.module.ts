@@ -22,13 +22,15 @@ import { ProgressComponent } from "./progress/progress.component";
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
-// Pipes
-import { PipesModule } from "../pipes/pipes.module";
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+// Pipes
+import { PipesModule } from "../pipes/pipes.module";
+
 
 @NgModule({
     declarations: [
@@ -45,7 +47,8 @@ import { MedicoComponent } from './medicos/medico.component';
         ModalUploadComponent,
         HospitalesComponent,
         MedicosComponent,
-        MedicoComponent
+        MedicoComponent,
+        BusquedaComponent
     ],
     imports: [
         CommonModule,

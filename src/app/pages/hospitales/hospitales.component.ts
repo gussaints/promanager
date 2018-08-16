@@ -90,8 +90,21 @@ export class HospitalesComponent implements OnInit {
 
   borrarHospital( hospital: Hospital ){
     console.log(hospital);
-    this._hospitalService.borrarHospital( hospital._id )
-        .subscribe( ( ) => this.cargarHospitales( ) );
+    swal({
+      title: 'Esta seguro?',
+      text: 'Esta a punto de borrar a ' + hospital.nombre,
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    })
+    .then( borrar => {
+      console.log( borrar );
+      if ( borrar ) {
+        this._hospitalService.borrarHospital( hospital._id )
+            .subscribe( ( ) => this.cargarHospitales( ) );
+      }
+    });
+    
   }
 
   crearHospital( ){

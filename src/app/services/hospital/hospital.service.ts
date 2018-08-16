@@ -38,7 +38,7 @@ export class HospitalService {
     let url = URL_SERVICIOS + '/hospital/' + id;
     return this.http.get( url )
                .pipe( map( ( resp: any ) => {
-                 resp.hospital;
+                 return resp.hospital;
                }));
   }
 

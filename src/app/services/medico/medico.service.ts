@@ -18,11 +18,20 @@ export class MedicoService {
     public _usuarioService: UsuarioService
   ) { }
 
-  cargarMedicos( ){
-    let url = URL_SERVICIOS + '/medico';
+  cargarMedico( id: string ){
+    let url = URL_SERVICIOS + '/medico/' + id;
+
     return this.http.get( url )
                .pipe( map( ( resp: any ) => {
-                 console.log( resp );
+                 return resp.medico;
+               }))
+  }
+
+  cargarMedicos( desde: number = 0 ){
+    let url = URL_SERVICIOS + '/medico?desde=' + desde;
+    
+    return this.http.get( url )
+               .pipe( map( ( resp: any ) => {
                  this.totalMedicos = resp.total;
                  return resp.medicos;
                }))
@@ -47,14 +56,29 @@ export class MedicoService {
 
   guardarMedico( medico: Medico ){
     let url = URL_SERVICIOS + '/medico';
-    url += '?token=' + this._usuarioService.token;
-    return this.http.post( url, medico )
-        .pipe( map( ( resp: any ) => {
-          console.log( resp );
-          
-          swal( "Medico creado", "Nombre: " + medico.nombre, 'success' );
-          return resp.medico;
-        }))
+
+    if ( medico._id ) {
+      // Actualizando
+      url += '/' + medico._id;
+      url += '?token=' + this._usuarioService.token;
+
+      return this.http.put( url, medico )
+          .pipe( map( ( resp: any ) => {
+            swal( "Medico Actualizado", "Nombre: " + medico.nombre, 'success' );
+            return resp.medico;
+          }));
+
+    } else {
+      // Creando
+      url += '?token=' + this._usuarioService.token;
+
+      return this.http.post( url, medico )
+          .pipe( map( ( resp: any ) => {
+            swal( "Medico creado", "Nombre: " + medico.nombre, 'success' );
+            return resp.medico;
+          }));
+    }
+    
   }
 
 

@@ -49,10 +49,10 @@
                                 <img (click)="actualizarImagen( medico )" [src]="medico.img | imagen:'medicos'" class="img50 img-circle pointer">
                             </td>
                             <td>
-                              <input type="text" [(ngModel)]="medico.nombre" class="form-control" value="">
+                              <input type="text" disabled [(ngModel)]="medico.nombre" class="form-control" value="">
                             </td>
                             <td>
-                              <input type="text" [(ngModel)]="medico.hospital.nombre" class="form-control" value="">
+                              <input type="text" disabled [(ngModel)]="medico.hospital.nombre" class="form-control" value="">
                             </td>
                             <td>
                                 <button [routerLink]="['/medico', medico._id]" class="btn btn-primary">

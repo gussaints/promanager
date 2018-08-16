@@ -1,29 +1,33 @@
-<div class="row">
+<div class="row animated fadeIn">
     <div class="col-md-6">
         <div class="card card-body">
-            <h3 class="box-title m-b-0">Medico: NOMBRE MEDICO</h3>
+            <h3 class="box-title m-b-0">Medico: {{ medico.nombre }}</h3>
             <p class="text-muted m-b-30 font-13"> jajaja Gloria a Dios </p>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
                     <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarMedico(f)">
                         <div class="form-group">
-                            <label>Nombre del medico</label>
+                            <label>{{ medico.nombre }}</label>
                             <input [(ngModel)]="medico.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del medico" required>
                         </div>
                         <div class="form-group">
                             <label>Hospital</label>
-                            <select [(ngModel)]="medico.hospital" name="hospital" class="form-control" required>
+                            <select (change)="cambiarHospital( $event.target.value )" [(ngModel)]="medico.hospital" name="hospital" class="form-control" required>
                                 <option value="">Seleccione hospital</option>
                                 <option *ngFor="let hospital of hospitales" [value]="hospital._id">
                                     {{ hospital.nombre }}
                                 </option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <button type="submit" *ngIf="saveButton" class="btn btn-primary waves-effect waves-light m-r-10">
                             <i class="fa fa-save"></i>
                             Guardar
                         </button>
-                        <button routerLink="/medicos" class="btn btn-inverse waves-effect waves-light">Cancelar</button>
+                        <button type="submit" *ngIf="!saveButton" class="btn btn-info waves-effect waves-light m-r-10">
+                            <i class="fa fa-save"></i>
+                            Actualizar
+                        </button>
+                        <a routerLink="/medicos" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
                     </form>
                 </div>
             </div>
@@ -32,13 +36,13 @@
     <div class="col-md-3">
         <div class="card card-body">
             <h3 class="box-title m-b-0">Hospital</h3>
-            <img src="" alt="">
+            <img [src]="hospital.img | imagen:'hospitales'" class="rounded img-fluid">
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" *ngIf="medico._id">
         <div class="card card-body">
             <h3 class="box-title m-b-0">Fotografia</h3>
-            <img src="" alt="">
+            <img (click)="cambiarFoto( )" [src]="medico.img | imagen:'medicos'" class="img-circle img-fluid pointer">
         </div>
     </div>
 </div>

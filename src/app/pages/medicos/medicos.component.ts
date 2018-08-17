@@ -53,7 +53,7 @@ export class MedicosComponent implements OnInit {
       title: 'Esta seguro?',
       text: 'Esta a punto de borrar a ' + medico.nombre,
       icon: 'warning',
-      buttons: true,
+      buttons: ['Cancel', 'Ok'],
       dangerMode: true
     })
     .then( borrar => {

@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { SidebarrightComponent } from './sidebarright/sidebarright.component';
 import { FooterComponent } from './footer/footer.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 // Pipes
 import { PipesModule } from "../pipes/pipes.module";
 
@@ -18,7 +19,8 @@ import { PipesModule } from "../pipes/pipes.module";
         SidebarComponent,
         BreadcrumbsComponent,
         SidebarrightComponent,
-        FooterComponent
+        FooterComponent,
+        ModalUploadComponent
     ],
     imports: [
         CommonModule,
@@ -31,7 +33,8 @@ import { PipesModule } from "../pipes/pipes.module";
         SidebarComponent,
         BreadcrumbsComponent,
         SidebarrightComponent,
-        FooterComponent
+        FooterComponent,
+        ModalUploadComponent
     ],
     providers: [],
 })

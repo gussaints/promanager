@@ -1,9 +1,9 @@
-import { BrowserModule } from "@angular/platform-browser";
+// import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 // animations
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 // Plugins
 import { ChartsModule } from "ng2-charts";
@@ -36,9 +36,9 @@ import { HomeComponent } from './home/home.component';
 
 @NgModule({
     declarations: [
+        // PagesComponent,
         DashboardComponent,
         Graph1Component,
-        PagesComponent,
         ProgressComponent,
         IncrementadorComponent,
         GraficoDonaComponent,
@@ -46,7 +46,7 @@ import { HomeComponent } from './home/home.component';
         RxjsComponent,
         ProfileComponent,
         UsuariosComponent,
-        ModalUploadComponent,
+        // ModalUploadComponent,
         HospitalesComponent,
         MedicosComponent,
         MedicoComponent,
@@ -61,14 +61,14 @@ import { HomeComponent } from './home/home.component';
         FormsModule,
         ChartsModule,
         PipesModule,
-        BrowserAnimationsModule,
+        // BrowserAnimationsModule,
         MatButtonModule,
         MatCheckboxModule
     ],
     exports: [
         DashboardComponent,
         Graph1Component,
-        PagesComponent,
+        // PagesComponent,
         ProgressComponent
     ],
     providers: [],

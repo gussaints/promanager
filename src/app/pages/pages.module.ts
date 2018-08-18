@@ -27,9 +27,11 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 // Pipes
 import { PipesModule } from "../pipes/pipes.module";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { PipesModule } from "../pipes/pipes.module";
         HospitalesComponent,
         MedicosComponent,
         MedicoComponent,
-        BusquedaComponent
+        BusquedaComponent,
+        ForbiddenComponent,
+        HomeComponent
     ],
     imports: [
         CommonModule,

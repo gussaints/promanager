@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import { map } from "rxjs/operators";
 
 import { URL_SERVICIOS } from "../../config/config";
+import { Medico } from "../../models/medico.model";
 import { UsuarioService } from "../usuario/usuario.service";
 
 @Injectable({

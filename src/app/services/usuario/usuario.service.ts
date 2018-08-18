@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { Usuario } from "../../models/usuario.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { URL_SERVICIOS } from "../../config/config";
 import swal from "sweetalert";
-import { map } from "rxjs/operators";
+import { Observable, throwError } from 'rxjs';
+import { map, catchError, retry  } from "rxjs/operators";
 // import "rxjs/add/operator/map";
 // Services
 import { SubirArchivoService } from "../subir-archivo/subir-archivo.service";
@@ -84,24 +85,35 @@ export class UsuarioService {
 
     let url = URL_SERVICIOS + '/login';
     return this.http.post( url, usuario )
-               .pipe( map( ( resp: any ) => {
-                //  localStorage.setItem( 'id', resp.id );
-                //  localStorage.setItem( 'token', resp.token );
-                //  localStorage.setItem( 'usuario', JSON.stringify( resp.usuario ) );
-
-                this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
-
-                 return true;
-               }));
+               .pipe(
+                 map( ( resp: any ) => {
+                      this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu );
+                      return true;
+                 }),
+                 catchError( (error: HttpErrorResponse) => {
+                  // return an observable with a user-facing error message
+                  swal( 'Error en el login', error.error.mensaje, 'error' );
+                  return throwError( error );
+                 })
+               );
   }
 
   crearUsuario( usuario: Usuario ){
     let url = URL_SERVICIOS + '/usuario';
     return this.http.post( url, usuario )
-               .pipe( map( ( resp: any ) => {
-                  swal( 'Usuario creado', usuario.email, 'success' );
-                  return resp.usuario;
-                }));
+               .pipe(
+                 map( ( resp: any ) => {
+                    swal( 'Usuario creado', usuario.email, 'success' );
+                    return resp.usuario;
+                 }),
+                 catchError( (error: HttpErrorResponse) => {
+                  // return an observable with a user-facing error message
+                  console.log( error );
+                  
+                  swal( error.error.message, error.error.errors.message, 'error' );
+                  return throwError( error );
+                 })
+                );
   }
 
   actualizarUsuario( usu: Usuario ){
@@ -118,12 +130,17 @@ export class UsuarioService {
                         console.log( 'se guardo en el localStorage' );
                         
                       }
-
                       swal( 'Usuario actualizado', usu.nombre, 'success' );
-
                       return true;
-
-                    }));
+                    }),
+                    catchError( (error: HttpErrorResponse) => {
+                      // return an observable with a user-facing error message
+                      console.log( error );
+                      
+                      swal( error.error.message, error.error.errors.message, 'error' );
+                      return throwError( error );
+                    })
+            );
   }
 
 
